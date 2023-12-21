@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Url;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 /*
@@ -13,15 +14,18 @@ use Illuminate\Support\Str;
 |
 */
 
-Route::get('/', function () {
-    $url = config('app.url');
-    $str = Str::random(5);
-    $hello = $url . '/' . $str;
-    dd($hello);
+Route::get('/{param_url}', function ($param_url) {
+    $short_url = Url::where('param_url', $param_url)->first();
+
+    if ($short_url === null) {
+        // Handle the error, e.g., show a 404 page
+        abort(404);
+    }
+
+    $short_url->increment('visits');
+
+    return redirect($short_url->long_url);
 });
- Route::get('/dvZ5X',function(){
- $url="https://learning.postman.com/docs/getting-started/first-steps/sending-the-first-request/";
+
  
- return redirect($url);
- });
 
