@@ -20,8 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('v1/register',[AuthController::class,'register']);
 
-Route::post('v1/login',[AuthController::class,'login']);
 
-Route::apiResource('v1/url',UrlController::class)->middleware('auth:sanctum');
+ include __DIR__.'/v1/url.php';

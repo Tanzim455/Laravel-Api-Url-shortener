@@ -1,6 +1,8 @@
-<?php 
+<?php
 
-namespace routes\v1;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UrlController;
+use Illuminate\Support\Facades\Route;
 
 Route::post('v1/register',[AuthController::class,'register']);
 
