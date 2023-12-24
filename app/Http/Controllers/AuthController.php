@@ -44,5 +44,14 @@ class AuthController extends Controller
             'jwt' => $token
         ]);
     }
+
+    public function logout(){
+        
+        auth()->user()->tokens()->delete();
+    
+        return response([
+            'message' => 'Successfully Logged out'
+        ]);
+    }
     
 }
