@@ -23,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
  include __DIR__.'/v1/url.php';
+
+ include __DIR__.'/v2/url.php';
