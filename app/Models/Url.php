@@ -19,7 +19,7 @@ class Url extends Model
         parent::boot();
 
         static::creating(function ($url) {
-            $url->param_url = Str::random(5);
+        $url->param_url = Str::random(5);
         $url->short_url = config('app.url') . '/' . $url->param_url;
         $url->user_id = auth()->user()->id;
         });

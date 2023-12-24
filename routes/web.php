@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Url;
+use App\Http\Controllers\HomeController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,19 +14,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/{param_url}', function ($param_url) {
-    $short_url = Url::where('param_url', $param_url)->first();
-
-    if ($short_url === null) {
-        // Handle the error, e.g., show a 404 page
-        abort(404);
-    }
-
-    $short_url->increment('visits');
-
-    return redirect($short_url->long_url);
+Route::get('/',function(){
+     return "Home Page";
 });
+
+Route::get('/{param_url}',[HomeController::class,'index']);
 
  
 

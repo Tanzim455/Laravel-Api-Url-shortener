@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Url;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class UrlController extends Controller
 {
@@ -14,6 +14,15 @@ class UrlController extends Controller
     public function index()
     {
         //
+        $url=Url::select('long_url')->where('user_id',auth()?->user()?->id)->get();
+         //or 
+        //  $url=Auth::user()->urls()->select('short_url')->get();
+        return response()->json(
+            [
+                'url'=>$url
+            ]
+            
+        );
     }
 
     /**
@@ -21,7 +30,7 @@ class UrlController extends Controller
      */
     public function create(Request $request)
     {
-        ;
+        
     }
     
 
@@ -32,7 +41,7 @@ class UrlController extends Controller
     {
         // Validate the request data as needed
         
-   ;
+   
     
     $validated = $request->validate([
         'long_url' => 'url|required',
