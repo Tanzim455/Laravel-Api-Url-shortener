@@ -9,5 +9,5 @@ class UrlVisit extends Model
 {
     use HasFactory;
 
-    protected $fillable=['short_url','visits'];
+    protected $fillable=['short_url','visits','user_id'];
 }

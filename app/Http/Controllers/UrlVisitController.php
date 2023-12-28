@@ -9,7 +9,7 @@ class UrlVisitController extends Controller
 {
     //
     public function index(){
-        $url_visits=UrlVisit::select('short_url','visits')->get();
+        $url_visits=UrlVisit::select('short_url','visits')->where('user_id',auth()?->user()?->id)->get();
 
         return response()->json(
             [
