@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Url;
 use App\Models\UrlVisit;
 
-
 class HomeController extends Controller
 {
     public function index($param_url)
@@ -21,12 +20,12 @@ class HomeController extends Controller
             ->where('user_id', $short_url->user_id)
             ->first();
 
-        if (!$short_url_exists) {
+        if (! $short_url_exists) {
             $visit = 1;
             UrlVisit::create([
                 'short_url' => $short_url->short_url,
                 'visits' => $visit,
-                'user_id' => $short_url->user_id, 
+                'user_id' => $short_url->user_id,
             ]);
 
             return redirect($short_url->long_url);
@@ -34,6 +33,7 @@ class HomeController extends Controller
 
         if ($short_url_exists) {
             $short_url_exists->increment('visits');
+
             return redirect($short_url->long_url);
         }
     }

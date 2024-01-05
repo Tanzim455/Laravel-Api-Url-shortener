@@ -16,7 +16,7 @@ class UrlCollection extends ResourceCollection
     {
         return [
             'data' => UrlResource::collection($this->collection),
-            
+
         ];
     }
 }

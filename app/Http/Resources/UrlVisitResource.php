@@ -16,7 +16,7 @@ class UrlVisitResource extends JsonResource
     {
         return [
             'short_url' => $this->whenNotNull($this->short_url),
-            'visits' => $this->whenNotNull($this->visits ),
+            'visits' => $this->whenNotNull($this->visits),
         ];
     }
 }

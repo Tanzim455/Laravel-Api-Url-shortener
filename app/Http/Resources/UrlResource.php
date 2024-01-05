@@ -17,7 +17,7 @@ class UrlResource extends JsonResource
         return [
             'long_url' => $this->whenNotNull($this->long_url),
             'short_url' => $this->whenNotNull($this->short_url),
-             
+
         ];
     }
 }

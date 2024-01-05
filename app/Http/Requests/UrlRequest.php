@@ -23,7 +23,7 @@ class UrlRequest extends FormRequest
     {
         return [
             //
-            'long_url'=>'required'
+            'long_url' => 'required',
         ];
     }
 }
