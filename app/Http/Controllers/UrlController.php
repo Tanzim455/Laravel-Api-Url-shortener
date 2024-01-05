@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UrlCollection;
+use App\Http\Resources\UrlResource;
+use App\Http\Resources\UserResource;
 use App\Models\Url;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,16 +16,10 @@ class UrlController extends Controller
      */
     public function index()
     {
-        //
-        $url=Url::select('long_url')->where('user_id',auth()?->user()?->id)->get();
-         //or 
-        //  $url=Auth::user()->urls()->select('short_url')->get();
-        return response()->json(
-            [
-                'url'=>$url
-            ]
-            
-        );
+       
+          $url=Url::where('user_id',auth()?->user()?->id)->select('long_url')->paginate(10);
+          return new UrlCollection($url);
+       
     }
 
     /**
