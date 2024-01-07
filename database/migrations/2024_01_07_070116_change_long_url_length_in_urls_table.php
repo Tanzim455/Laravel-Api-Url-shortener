@@ -11,23 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('urls', function (Blueprint $table) {
-            $table->id();
-            $table->string('long_url');
-            $table->string('param_url');
-            $table->string('short_url');
-
-            $table->foreignId('user_id')->constrained();
-            $table->timestamps();
+        Schema::table('urls', function (Blueprint $table) {
+            //
+            $table->string('long_url', 2048)->change();
         });
     }
-   
-    
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('urls');
+        Schema::table('urls', function (Blueprint $table) {
+            //
+            $table->string('long_url', 255)->change();
+        });
     }
 };
